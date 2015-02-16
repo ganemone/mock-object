@@ -6,6 +6,10 @@
   "scripts": {
     "test": "test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ganemone/mock.git"
+  },
   "keywords": [
     "node",
     "mock",
