@@ -23,5 +23,8 @@
   },
   "dependencies": {
     "chai": "~2.0.0"
+  },
+  "browserDependencies": {
+    "chai": "~2.0.0"
   }
 }
