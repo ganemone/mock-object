@@ -1,5 +1,5 @@
 {
-  "name": "mock",
+  "name": "mock-object",
   "version": "0.0.0",
   "description": "Simple mocking inspired by python mock functionality",
   "main": "index.js",
