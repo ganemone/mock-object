@@ -6,10 +6,6 @@
   "scripts": {
     "test": "test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:ganemone/mock.git"
-  },
   "keywords": [
     "node",
     "mock",
@@ -22,10 +18,6 @@
     "url": "https://github.com/ganemone/mock/issues"
   },
   "dependencies": {
-    "chai": "~2.0.0",
-    "deep-equal": "~1.0.0"
-  },
-  "browserDependencies": {
     "chai": "~2.0.0"
   }
 }
