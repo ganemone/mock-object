@@ -1,0 +1,24 @@
+{
+  "name": "mock",
+  "version": "0.0.0",
+  "description": "Simple mocking inspired by python mock functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ganemone/mock.git"
+  },
+  "keywords": [
+    "node",
+    "mock",
+    "unit",
+    "testing"
+  ],
+  "author": "Giancarlo Anemone <ganemone@gmail.com> (http://www.giancarloanemone.com/)",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/ganemone/mock/issues"
+  }
+}
