@@ -1,16 +1,14 @@
 var assert = require('chai').assert;
 var makeMock = require('../lib/makeMock');
 
-var api = {
-  someFunction: function() {
-  },
-  prototype: {
-    anotherFunction: function() {
-    }
-  }
+function API() {
 }
 
-var mockAPI = makeMock(api);
+API.someFunction = function someFunction() {}
+API.prototype.anotherFunction = function() {
+};
+
+var mockAPI = makeMock(API);
 var newAPI = new mockAPI();
 
 describe('makeMock', function () {
