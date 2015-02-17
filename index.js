@@ -3,7 +3,7 @@ var assert = require('chai').assert;
 module.exports = function makeMock(object, type) {
   var args = [];
   var mockObj = function mockObj() {};
-
+  var prop;
   for (prop in object.prototype) {
     mockObj.prototype[prop] = mockFunction(prop);
   }
@@ -35,25 +35,25 @@ module.exports = function makeMock(object, type) {
   return mockObj;
 
   function mockFunction(name) {
-    var returns = undefined;
+    var returnVal;
     var sideEffects = [];
     args[name] = [];
     function _mockFunction() {
       args[name].push(Array.prototype.slice.call(arguments));
       applySideEffects.apply(this, arguments);
-      return returns;
+      return returnVal;
     }
     function applySideEffects() {
       for (var i = 0; i < sideEffects.length; i++) {
         sideEffects[i].apply(this, arguments);
-      };
+      }
     }
     _mockFunction.assertCalledOnceWith = function assertCalledOnceWith(expectedArgs, message) {
       assert.deepEqual(args[name][0], expectedArgs, message);
-    }
+    };
     _mockFunction.assertCalledOnce = function assertCalledOnce(message) {
       assert.equal(args[name].length, 1, message);
-    }
+    };
     _mockFunction.assertCalledWith = function assertCalledWith(expectedArgs, message) {
       // TODO: Implement Deep equal comparison
       actualArgs = args[name];
@@ -65,26 +65,26 @@ module.exports = function makeMock(object, type) {
           if (j === actualArgs[i].length - 1) {
             return assert.deepEqual(actualArgs[i], expectedArgs);
           }
-        };
-      };
+        }
+      }
       assert.fail(actualArgs, expectedArgs, message);
-    }
+    };
     _mockFunction.assertNotCalled = function assertNotCalled(message) {
       assert.equal(args[name].length, 0, message);
-    }
+    };
     _mockFunction.assertNumTimesCalled = function assertNumTimesCalled(num, message) {
       assert.equal(args[name].length, num, message);
-    }
+    };
     _mockFunction.returns = function returns(value) {
-      returns = value;
-    }
+      returnVal = value;
+    };
     _mockFunction.assertCalledOnceWithArgsIncluding = function assertCalledWithArgsIncluding(expectedArgs, message) {
       assert.includeMembers(args[name][0], expectedArgs, message);
-    }
+    };
     _mockFunction.addSideEffect = function(sideEffectFunc) {
       sideEffects.push(sideEffectFunc);
-    }
+    };
     return _mockFunction;
   }
-}
+};
 
