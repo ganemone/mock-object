@@ -79,7 +79,20 @@ module.exports = function makeMock(object, type) {
       returnVal = value;
     };
     _mockFunction.assertCalledOnceWithArgsIncluding = function assertCalledWithArgsIncluding(expectedArgs, message) {
-      assert.includeMembers(args[name][0], expectedArgs, message);
+      var actualArgs = args[name][0];
+      for (var i = 0; i < expectedArgs.length; i++) {
+        var matched = false;
+        for (var j = 0; j < actualArgs.length; j++) {
+          if (deepEqual(actualArgs[j], expectedArgs[i])) {
+            matched = true;
+            break;
+          }
+        }
+        if (matched === false) {
+          return assert.fail(actualArgs, expectedArgs, message);
+        }
+      }
+      return true;
     };
     _mockFunction.addSideEffect = function(sideEffectFunc) {
       sideEffects.push(sideEffectFunc);
